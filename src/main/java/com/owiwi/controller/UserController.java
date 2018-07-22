@@ -99,7 +99,7 @@ public class UserController {
             // flag to determine if there is stranger connection
             boolean hasStrangerConnection = false;
 
-            // check if filtered users marked requesting user as stranger // TODO: get it peer reviewed
+            // check if filtered users marked the requesting user as stranger // TODO: get it peer reviewed
             for (int j = 0; filterUserConnections != null && j < filterUserConnections.size(); j++)
             {
                 if (filterUserConnections.get(j).getType().toString().equals(ConnectionType.STRANGER.toString())
@@ -111,7 +111,7 @@ public class UserController {
                 }
             }
 
-            // check if requesting user marked filtered user as a stranger //TODO: get it peer reviewed
+            // check if requesting user marked the filtered user as a stranger //TODO: get it peer reviewed
             for (int k = 0; requestingUserConnections != null && k < requestingUserConnections.size(); k++)
             {
                 if (requestingUserConnections.get(k).getType().toString().equals(ConnectionType.STRANGER.toString())
