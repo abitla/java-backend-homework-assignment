@@ -1,5 +1,7 @@
 package com.owiwi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.time.ZonedDateTime;
 
 /**
@@ -9,7 +11,8 @@ public abstract class Entity<T> {
 
 	private final T id;
 
-	private ZonedDateTime createdDate;
+	@JsonIgnore
+	private ZonedDateTime createdDate; //ignoring in JsonResponse. Too Large object to return in Response. TODO: return appropriate date
 
 	Entity(T id, ZonedDateTime createdDate) {
 		this.id = id;

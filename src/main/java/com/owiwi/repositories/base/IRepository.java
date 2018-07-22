@@ -12,9 +12,10 @@ public interface IRepository<K, T extends Entity<K>> {
 	List<T> getAll();
 
 	/**
-	 * @param id The id of the entity.
-	 * @return the entity object.
+	 * get all by id
+	 * @param id the id of the entity.
+	 * @return the list of entity objects.
 	 */
-	T findById(K id);
+	List<T> getAllById(K id);
 
 }

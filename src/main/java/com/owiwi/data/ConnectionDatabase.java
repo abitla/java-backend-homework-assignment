@@ -22,7 +22,7 @@ public class ConnectionDatabase {
 
 		List<User> usersList = UserDatabase.generateUsers();
 
-		for (int j = 0; j < 10; j++) {
+		//for (int j = 0; j < 10; j++) { commented out this for loop. API too slow
 			for (int a = 0; a < usersList.size(); a++) {
 				for (int b = usersList.size() - 1; b >= 0; b--) {
 					if (a != b) {
@@ -30,7 +30,7 @@ public class ConnectionDatabase {
 					}
 				}
 			}
-		}
+		//}
 
 		return out;
 	}
@@ -45,7 +45,6 @@ public class ConnectionDatabase {
 		} else {
 			return ConnectionType.STRANGER;
 		}
-
 	}
 
 }
