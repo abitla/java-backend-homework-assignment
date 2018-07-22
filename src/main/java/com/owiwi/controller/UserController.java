@@ -31,7 +31,6 @@ public class UserController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<User> getUser(@PathVariable("id") long id) {
-
         User user = userService.getUser(id);
         return ResponseEntity.ok(user);
     }
@@ -45,9 +44,7 @@ public class UserController {
     public ResponseEntity<Map<ConnectionType, List<Connection>>> getConnections(@PathVariable("id") long id) {
 
         List<Connection> connections = userService.getConnections(id);
-
         List<ConnectionType> connectionTypeList = Arrays.asList(ConnectionType.values());
-
         Map<ConnectionType, List<Connection>> connectionsByType = new HashMap<ConnectionType, List<Connection>>();
 
         // add connections to map based on connection type
@@ -56,7 +53,6 @@ public class UserController {
                             .stream()
                             .filter(connection -> connection.getType().equals(connectionType))
                             .collect(Collectors.toList());
-
                     connectionsByType.put(connectionType, connectionsTypeList);
                 }
         );
@@ -71,13 +67,10 @@ public class UserController {
     @ResponseBody
     public ResponseEntity<String> addConnections(@PathVariable("type") ConnectionType connectionType,
                                              @RequestBody List<String> usersIds) {
-
         List<User> users = new ArrayList<User>();
-
         usersIds.forEach( userId -> {
                     users.add(userService.getUser(Long.parseLong(userId)));
                 });
-
         userService.addConnections(connectionType, users);
 
         return ResponseEntity.ok("success");
@@ -91,11 +84,8 @@ public class UserController {
     @ResponseBody
     public ResponseEntity<List<User>> getSuggestions(
             @RequestBody SearchRequest searchRequest) {
-
         User user = userService.getUser(Long.parseLong(searchRequest.getId())); // get requesting user
-
         List<User> users = userService.getUsersByFilters(searchRequest, user); // get users based on search filters
-
         List<User> filteredUsers = new ArrayList<User>(); // final filtered list to return
 
         for (int i = 0; users != null && i < users.size(); i++)
@@ -109,8 +99,7 @@ public class UserController {
             // flag to determine if there is stranger connection
             boolean hasStrangerConnection = false;
 
-            // check if filtered users marked requesting user as stranger
-            // TODO: confirm the logic
+            // check if filtered users marked requesting user as stranger // TODO: get it peer reviewed
             for (int j = 0; filterUserConnections != null && j < filterUserConnections.size(); j++)
             {
                 if (filterUserConnections.get(j).getType().toString().equals(ConnectionType.STRANGER.toString())
@@ -122,8 +111,7 @@ public class UserController {
                 }
             }
 
-            // check if requesting user marked filtered user as a stranger
-            // TODO: confirm the logic
+            // check if requesting user marked filtered user as a stranger //TODO: get it peer reviewed
             for (int k = 0; requestingUserConnections != null && k < requestingUserConnections.size(); k++)
             {
                 if (requestingUserConnections.get(k).getType().toString().equals(ConnectionType.STRANGER.toString())

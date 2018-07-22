@@ -43,9 +43,7 @@ public class UserRepository extends BaseRepository<Long, User> {
 	 */
 	public List<User> getUsersByFilters(SearchRequest searchRequest, User requestingUser) {
 		List<User> users = this.dataList;
-
 		int requestingUserYear = requestingUser.getDateOfBirth().getYear();
-
 		List<User> filteredUsers = users.stream()
 				.filter(user -> user.getEducationLevel().toString().equals(searchRequest.getEducationLevel())) // filter based on education level
 				.filter(user -> user.getGender().toString().equals(searchRequest.getGender())) // filter based on gender

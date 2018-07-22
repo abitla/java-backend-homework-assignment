@@ -19,7 +19,6 @@ public class ConnectionRepository extends BaseRepository<Long, Connection> {
 
 	/** return list of all connections **/
 	public List<Connection> getAll() {
-
 		return this.dataList;
 	}
 
@@ -30,7 +29,6 @@ public class ConnectionRepository extends BaseRepository<Long, Connection> {
 	 * @return
 	 */
 	public List<Connection> getAllById(Long id) {
-
 		return this.dataList.stream()
 				.filter(connection -> connection.getId() == id)
 				.collect(Collectors.toList());

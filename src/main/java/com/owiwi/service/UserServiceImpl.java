@@ -18,14 +18,12 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User getUser(long id){
-
 		List<User> users = userRepository.getAllById(id);
 		return (users != null ? users.get(0) : null);
 	}
 
 	@Override
 	public List<Connection> getConnections(long id){
-
 		return connectionRepository.getAllById(id);
 	}
 
